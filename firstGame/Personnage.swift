@@ -30,6 +30,8 @@ class Personnage{
     func displayName(){
         print("My name is \(name)")
     }
+    
+    func action(target : Personnage){}
 }
 //class Warrior inherited from Personnage, an abstract class from warriors' subclasses
 class Warrior : Personnage{
@@ -37,6 +39,10 @@ class Warrior : Personnage{
     
     //Methods
     func attackTarget(target : Personnage){
+        target.lifePoints = target.lifePoints - attackValue
+        print("Life points remaining on \(target.name) are of \(target.lifePoints) ")
+    }
+    override func action(target : Personnage) {
         target.lifePoints = target.lifePoints - attackValue
         print("Life points remaining on \(target.name) are of \(target.lifePoints) ")
     }
@@ -55,7 +61,7 @@ class Healer : Personnage{
         }
     }
     
-    func healTarget(target : Personnage){
+    override func action(target : Personnage){
         if isFullyRestore(target: target){
             target.lifePoints = target.maxLifePoints
         }

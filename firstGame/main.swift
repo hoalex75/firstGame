@@ -7,7 +7,19 @@
 //
 
 import Foundation
+var albert = Combattant(name :"Albert")
+albert.displayName()
+var henry = Combattant(name :"Henry")
+henry.displayName()
+var ines = Mage(name : "Inès")
+ines.displayName()
 
-print("Hello, World!")
-var p : Personnage = Personnage(name :"Albert")
-p.displayName()
+
+albert.action(target: henry)
+ines.action(target: henry)
+ines.action(target: henry)
+ines.action(target: henry)
+
+var teamOne = Team(teamNumber: .teamOne, characterOne: albert, characterTwo: ines, characterThree: henry)
+
+teamOne.characters[0].displayName()
