@@ -7,11 +7,11 @@
 //
 
 import Foundation
-var albert = Combattant(name :"Albert")
+var albert = Combattant(name :"Albert", team : .teamOne)
 albert.displayName()
-var henry = Combattant(name :"Henry")
+var henry = Combattant(name :"Henry", team : .teamTwo)
 henry.displayName()
-var ines = Mage(name : "Inès")
+var ines = Mage(name : "Inès", team : .teamOne)
 ines.displayName()
 
 
