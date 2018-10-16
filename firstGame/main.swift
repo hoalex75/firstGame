@@ -9,4 +9,5 @@
 import Foundation
 
 print("Hello, World!")
-
+var p : Personnage = Personnage(name :"Albert")
+p.displayName()
