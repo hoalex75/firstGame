@@ -13,12 +13,13 @@ struct Game{
     
     init(){
         Game.introDisplay(1)
-        //readLine
+        // Constitution of the teams
         team1 = Game.teamRecrutment(1)
         Game.introDisplay(2)
         team2 = Game.teamRecrutment(2)
     }
     
+    //Function with prints which display the caracteristics of all characters, teamNumber required to adjust display
     private static func introDisplay(_ teamNumber : Int){
         print("Player \(teamNumber == 1 ? "one" : "two") you must choose three characters to complete your team.")
         print("You can have several times the same type of warrior, here are the choices :")
@@ -28,6 +29,7 @@ struct Game{
         print("Nain : Sa hache vous infligera beaucoup de dégâts, mais il n'a pas beaucoup de points de vie.")
     }
     
+    //Function which creates characters and put them in a new team
     private static func teamRecrutment(_ teamNumber : Int) -> Team{
         var choice = ""
         var character : Personnage
@@ -43,6 +45,7 @@ struct Game{
         return newTeam
     }
     
+    //Function which display informations to give a choice to a player on which character does he want.
     private static func choiceEntry(_ teamNumber : Int) -> String{
         print("Player \(teamNumber == 1 ? "one" : "two") which type of warrior will join your team ?")
         print("1 - Combattant 2 - Nain 3 - Colosse 4 - Mage")
@@ -63,7 +66,7 @@ struct Game{
     }
     
     // soucis si j'initialise avant le switch il me renvoie les deux "personnages"
-    
+    // Function which creates the characters with a name given by the player.
     private static func createCharacter(choice : String) -> Personnage{
         switch choice {
         case "1" :
@@ -85,13 +88,23 @@ struct Game{
         return character
     }
     
+    //Function which save the name entries by the player and return it.
     private static func nameEntry(warriorType : String) -> String{
         print("Which name do you want for your \(warriorType) ?")
         if let name = readLine(){
-            return name
+            if Personnage.existingName(nameWeWant: name){
+                print("Name already taken for one character, please pick a new one.")
+                let newName = Game.nameEntry(warriorType: warriorType)
+                return newName
+            } else {
+                return name
+            }
         }
         print("You don't choose a name or a problem occured, pls try again")
         let err=Game.nameEntry(warriorType: warriorType)
         return err
     }
+    
+    
+    
 }

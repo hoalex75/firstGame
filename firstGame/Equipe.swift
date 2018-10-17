@@ -23,8 +23,10 @@ struct Team{
         self.characters = characters
     }
     
+    //Function which displays the number of the team and its characters.
     func displayTeamMembers(){
         var i = 1
+        print("\(self.teamNumber == .teamOne ? "Team One " : "Team Two " )", terminator : ":")
         for character in self.characters {
             print("\(i)-\(character.name) \(i != 3 ? " ": "")", terminator:"")
             i += 1

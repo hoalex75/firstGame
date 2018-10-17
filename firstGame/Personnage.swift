@@ -17,21 +17,13 @@ class Personnage{
     
     //Builder
     init(name : String){
-        if Personnage.existingName(nameWeWant: name){
-            print("erreur nom existant")
-            print("il y a \(Personnage.names.count) éléments dans le set")
-            for element in Personnage.names {
-                print("\(element)", terminator : " ")
-                print("")
-            }
-        } else {
-            Personnage.names.insert(name)
-            self.name = name
-        }
+        Personnage.names.insert(name)
+        self.name = name
     }
     //Methods
     static func existingName(nameWeWant : String) -> Bool {
-        return Personnage.names.contains(nameWeWant)
+        let existingName = Personnage.names.contains(nameWeWant)
+        return existingName
     }
     
     func displayName(){
@@ -49,6 +41,8 @@ class Warrior : Personnage{
         target.lifePoints = target.lifePoints - attackValue
         print("Life points remaining on \(target.name) are of \(target.lifePoints) ")
     }
+    
+    //function for attacks
     override func action(target : Personnage) {
         target.lifePoints = target.lifePoints - attackValue
         print("Life points remaining on \(target.name) are of \(target.lifePoints) ")
@@ -60,6 +54,7 @@ class Healer : Personnage{
     var healValue = 0
     
     //Methods
+    //Function which tests if the target is on the same team as the healer
     private func isOnTheSameTeam(target : Personnage) -> Bool{
         if target.team != self.team {
             return false
@@ -68,6 +63,7 @@ class Healer : Personnage{
         }
     }
     
+    //Function which is here to prevent healing over the maximum of life points
     private func isFullyRestore(target : Personnage) -> Bool{
         if target.lifePoints + healValue >= target.maxLifePoints{
             return true
@@ -76,6 +72,7 @@ class Healer : Personnage{
         }
     }
     
+    //Function of healing
     override func action(target : Personnage){
         if isOnTheSameTeam(target: target){
             if isFullyRestore(target: target){
