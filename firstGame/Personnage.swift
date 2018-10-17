@@ -18,7 +18,12 @@ class Personnage{
     //Builder
     init(name : String){
         if Personnage.existingName(nameWeWant: name){
-            print("erreur")
+            print("erreur nom existant")
+            print("il y a \(Personnage.names.count) éléments dans le set")
+            for element in Personnage.names {
+                print("\(element)", terminator : " ")
+                print("")
+            }
         } else {
             Personnage.names.insert(name)
             self.name = name
@@ -26,7 +31,7 @@ class Personnage{
     }
     //Methods
     static func existingName(nameWeWant : String) -> Bool {
-        return names.contains(nameWeWant)
+        return Personnage.names.contains(nameWeWant)
     }
     
     func displayName(){

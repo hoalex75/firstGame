@@ -18,12 +18,9 @@ struct Team{
     var teamNumber : PlayerTeam
     var characters = [Personnage]()
     
-    init(teamNumber : PlayerTeam, characterOne : Personnage, characterTwo : Personnage, characterThree : Personnage){
+    init(teamNumber : PlayerTeam, characters : [Personnage]){
         self.teamNumber = teamNumber
-        characters = [characterOne,characterTwo,characterThree]
-        for character in self.characters {
-            character.team = teamNumber
-        }
+        self.characters = characters
     }
     
     func displayTeamMembers(){
