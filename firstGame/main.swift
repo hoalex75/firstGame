@@ -7,19 +7,25 @@
 //
 
 import Foundation
-var albert = Combattant(name :"Albert", team : .teamOne)
+
+var albert = Combattant(name :"Albert")
 albert.displayName()
-var henry = Combattant(name :"Henry", team : .teamTwo)
+var henry = Combattant(name :"Henry")
 henry.displayName()
-var ines = Mage(name : "Inès", team : .teamOne)
+var ines = Mage(name : "Inès")
 ines.displayName()
 
 
-albert.action(target: henry)
-ines.action(target: henry)
-ines.action(target: henry)
-ines.action(target: henry)
+
 
 var teamOne = Team(teamNumber: .teamOne, characterOne: albert, characterTwo: ines, characterThree: henry)
 
-teamOne.characters[0].displayName()
+
+var game = Game(teamOne : teamOne, teamTwo : teamOne)
+
+if let name = readLine() {
+    
+    print("Bonjour \(name)")
+    
+}
+

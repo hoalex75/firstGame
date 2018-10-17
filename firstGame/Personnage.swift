@@ -13,16 +13,15 @@ class Personnage{
     var name = ""
     var maxLifePoints = 0
     var lifePoints = 0
-    let team : PlayerTeam
+    var team = PlayerTeam.noTeam
     
     //Builder
-    init(name : String, team : PlayerTeam){
+    init(name : String){
         if Personnage.existingName(nameWeWant: name){
-            self.team = team
+            print("erreur")
         } else {
             Personnage.names.insert(name)
             self.name = name
-            self.team = team
         }
     }
     //Methods
@@ -91,8 +90,8 @@ class Healer : Personnage{
 class Mage : Healer {
     
     //Builder calling builder from Personnage
-    override init(name: String, team : PlayerTeam) {
-        super.init(name: name, team : team)
+    override init(name: String) {
+        super.init(name: name)
         healValue = 5
         maxLifePoints = 80
         lifePoints = maxLifePoints
@@ -101,8 +100,8 @@ class Mage : Healer {
 
 class Combattant : Warrior {
     //Builder calling builder from Personnage
-    override init(name: String, team : PlayerTeam) {
-        super.init(name: name, team : team)
+    override init(name: String) {
+        super.init(name: name)
         attackValue = 10
         maxLifePoints = 100
         lifePoints = maxLifePoints
@@ -111,8 +110,8 @@ class Combattant : Warrior {
 
 class Colosse : Warrior {
     //Builder calling builder from Personnage
-    override init(name: String, team : PlayerTeam) {
-        super.init(name: name, team : team)
+    override init(name: String) {
+        super.init(name: name)
         attackValue = 6
         maxLifePoints = 140
         lifePoints = maxLifePoints
@@ -121,8 +120,8 @@ class Colosse : Warrior {
 
 class Nain : Warrior {
     //Builder calling builder from Personnage
-    override init(name: String, team : PlayerTeam) {
-        super.init(name: name, team : team)
+    override init(name: String) {
+        super.init(name: name)
         attackValue = 14
         maxLifePoints = 60
         lifePoints = maxLifePoints
