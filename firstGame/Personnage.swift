@@ -14,6 +14,7 @@ class Personnage{
     var maxLifePoints = 0
     var lifePoints = 0
     var team = PlayerTeam.noTeam
+    var isDead = false
     
     //Builder
     init(name : String){
@@ -31,6 +32,56 @@ class Personnage{
     }
     
     func action(target : Personnage){}
+    
+    // soucis si j'initialise avant le switch il me renvoie les deux "personnages"
+    // Function which creates the characters with a name given by the player.
+    static func createCharacter(choice : String) -> Personnage{
+        switch choice {
+        case "1" :
+            let character = Combattant(name: Personnage.nameEntry(warriorType: "Combattant"))
+            return character
+        case "2" :
+            let character = Nain(name : Personnage.nameEntry(warriorType: "Nain"))
+            return character
+        case "3" :
+            let character = Colosse(name : Personnage.nameEntry(warriorType: "Colosse"))
+            return character
+        case "4" :
+            let character = Mage(name : Personnage.nameEntry(warriorType: "Mage"))
+            return character
+        default :
+            print("impossible de se retrouver ici, createCharacter")
+        }
+        let character = Colosse(name : "default")
+        return character
+    }
+    
+    //Function which save the name entries by the player and return it.
+    static func nameEntry(warriorType : String) -> String{
+        print("Which name do you want for your \(warriorType) ?")
+        if let name = readLine(){
+            if Personnage.existingName(nameWeWant: name){
+                print("Name already taken for one character, please pick a new one.")
+                let newName = Personnage.nameEntry(warriorType: warriorType)
+                return newName
+            } else {
+                return name
+            }
+        }
+        print("You don't choose a name or a problem occured, pls try again")
+        let err = Personnage.nameEntry(warriorType: warriorType)
+        return err
+    }
+    
+    //Function which change the boolean isDead if the character has no lp left
+    func setIsDead(){
+        isDead = lifePoints <= 0
+        if isDead {
+            print("\(name) has just died !")
+        }
+    }
+    
+
 }
 //class Warrior inherited from Personnage, an abstract class from warriors' subclasses
 class Warrior : Personnage{
@@ -45,7 +96,10 @@ class Warrior : Personnage{
     //function for attacks
     override func action(target : Personnage) {
         target.lifePoints = target.lifePoints - attackValue
-        print("Life points remaining on \(target.name) are of \(target.lifePoints) ")
+        target.setIsDead()
+        if !target.isDead {
+            print("Life points remaining on \(target.name) are of \(target.lifePoints) ")
+        }
     }
 }
 

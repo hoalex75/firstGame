@@ -14,6 +14,8 @@ var game = Game()
 
 game.team1.displayTeamMembers()
 game.team2.displayTeamMembers()
-
+while true {
+    game.battleTurn()
+}
 
 

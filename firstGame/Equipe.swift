@@ -18,8 +18,8 @@ struct Team{
     var teamNumber : PlayerTeam
     var characters = [Personnage]()
     
-    init(teamNumber : PlayerTeam, characters : [Personnage]){
-        self.teamNumber = teamNumber
+    init(player : Player, characters : [Personnage]){
+        teamNumber = player.team
         self.characters = characters
     }
     
