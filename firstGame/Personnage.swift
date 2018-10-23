@@ -81,24 +81,20 @@ class Personnage{
         }
     }
     
-
+    
 }
 //class Warrior inherited from Personnage, an abstract class from warriors' subclasses
 class Warrior : Personnage{
     var attackValue = 0
     
     //Methods
-    func attackTarget(target : Personnage){
-        target.lifePoints = target.lifePoints - attackValue
-        print("Life points remaining on \(target.name) are of \(target.lifePoints) ")
-    }
-    
     //function for attacks
     override func action(target : Personnage) {
         target.lifePoints = target.lifePoints - attackValue
         target.setIsDead()
         if !target.isDead {
-            print("Life points remaining on \(target.name) are of \(target.lifePoints) ")
+            print("\(self.name) attacks \(target.name) and deals \(attackValue) DMG.")
+            print("\(target.name) has \(target.lifePoints) HP left.")
         }
     }
 }
@@ -135,7 +131,8 @@ class Healer : Personnage{
             else {
                 target.lifePoints = target.lifePoints + healValue
             }
-            print("Life points remaining on \(target.name) are of \(target.lifePoints) ")
+            print("\(self.name) heals \(target.name) for \(healValue) HP.")
+            print("\(target.name) has \(target.lifePoints) HP left.")
         } else {
             print("You are healing an enemy")
         }

@@ -65,15 +65,23 @@ struct Game{
         return err
     }
     
-    
-    func battleTurn(){
+    //Function which leads a battle turn
+    private func battleTurn(teamTurn : Team){
+        let target : Personnage
         print("Which character do you want to act ?")
-        let characterTurn = characterSuitable(team: team1)
-        print("On which target do you want \(characterTurn.name) to attack ?")
-        let target = characterSuitable(team: team2)
+        let characterTurn = characterSuitable(team: teamTurn)
+        if Game.isHealer(character: characterTurn) {
+            print("Which character do you want \(characterTurn.name) to heal ?")
+            target = characterSuitable(team: teamTurn)
+        } else {
+            print("Which character do you want \(characterTurn.name) to attack ?")
+            target = characterSuitable(team: teamTurn.teamNumber == team1.teamNumber ? team2 : team1)
+        }
         characterTurn.action(target: target)
     }
     
+    
+    //Function which selects a character with a number entered by the player
     private func characterSelection(team : Team) -> Personnage{
         team.displayTeamMembers()
         if let num = readLine() {
@@ -82,12 +90,13 @@ struct Game{
                     return team.characters[numberOfCharacter - 1]
                 }
             }
-            print("This is not a valid number")
+            print("This is not a valid number, please enter a number between 1 and 3")
         }
         let err = characterSelection(team: team)
         return err
     }
     
+    //Function which checks if the character selected is dead or not, call itself if he is.
     private func characterSuitable(team : Team) -> Personnage{
         let character = characterSelection(team: team)
         if character.isDead {
@@ -98,6 +107,26 @@ struct Game{
         return character
     }
     
+    private static func isHealer(character : Personnage) -> Bool {
+        if let _ = character as? Healer {
+            return true
+        }
+        return false
+    }
     
-    
+    static func play(){
+        let game = Game()
+        var i = 1
+        var finish = false
+        
+        game.team1.displayTeamMembers()
+        game.team2.displayTeamMembers()
+        
+        while !finish {
+            let teamTurn = i%2 == 1 ? game.team1 : game.team2
+            game.battleTurn(teamTurn: teamTurn)
+            i += 1
+            finish = (teamTurn.teamNumber == game.team1.teamNumber ? game.team2 : game.team1).isDead()
+        }
+    }
 }

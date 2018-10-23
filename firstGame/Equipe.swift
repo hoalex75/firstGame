@@ -15,10 +15,12 @@ enum PlayerTeam{
 }
 
 struct Team{
-    var teamNumber : PlayerTeam
+    let teamNumber : PlayerTeam
+    let player : Player
     var characters = [Personnage]()
     
     init(player : Player, characters : [Personnage]){
+        self.player = player
         teamNumber = player.team
         self.characters = characters
     }
@@ -32,5 +34,9 @@ struct Team{
             i += 1
         }
         print("")
+    }
+    
+    func isDead() -> Bool {
+        return characters[0].isDead && characters[1].isDead && characters[2].isDead
     }
 }
