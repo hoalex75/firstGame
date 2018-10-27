@@ -93,7 +93,11 @@ class Warrior : Personnage{
     //Methods
     //function for attacks
     override func action(target : Personnage) {
-        target.lifePoints = target.lifePoints - weapon.value
+        var lifePointsRemaining = target.lifePoints - weapon.value
+        if lifePointsRemaining < 0 {
+            lifePointsRemaining = 0
+        }
+        target.lifePoints = lifePointsRemaining
         target.setIsDead()
         if !target.isDead {
             print("\(self.name) attacks \(target.name) and deals \(weapon.value) DMG.")
