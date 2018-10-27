@@ -28,15 +28,19 @@ struct Team{
     //Function which displays the number of the team and its characters.
     func displayTeamMembers(){
         var i = 1
-        print("\(self.teamNumber == .teamOne ? "Team One " : "Team Two " )", terminator : ":")
+        print("\(player.name)'s team ", terminator : ":")
         for character in self.characters {
-            print("\(i)-\(character.name) \(i != 3 ? " ": "")", terminator:"")
+            print("\(i)-\(character.name) : \(character.lifePoints)/\(character.maxLifePoints) HP\(i != 3 ? " ": "")", terminator:"")
             i += 1
         }
         print("")
     }
     
-    func isDead() -> Bool {
-        return characters[0].isDead && characters[1].isDead && characters[2].isDead
+    func isDead(winner : Player) -> Bool {
+        let isFinished = characters[0].isDead && characters[1].isDead && characters[2].isDead
+        if isFinished {
+            print("\(winner.name) has won this game !! Congratulations to both of you.")
+        }
+        return isFinished
     }
 }

@@ -47,9 +47,9 @@ struct Game{
     
     //Function which display informations to give a choice to a player on which character does he want.
     private static func choiceEntry(_ playerName : String) -> String{
-        print("\(playerName) which type of warrior do you want to join your team ?")
+        print("\n\(playerName), which type of warrior do you want to join your team ?")
         print("1 - Combattant 2 - Nain 3 - Colosse 4 - Mage")
-        print("\(playerName), please enter the corresponding number to the type of champion you desire:")
+        print("\n\(playerName), please enter the corresponding number to the type of champion you desire:")
         if let choice = readLine(){
             switch choice {
             case "1","2","3","4" :
@@ -68,7 +68,7 @@ struct Game{
     //Function which leads a battle turn
     private func battleTurn(teamTurn : Team){
         let target : Personnage
-        print("Which character do you want to act ?")
+        print("\nWhich character do you want to act ?")
         let characterTurn = characterSuitable(team: teamTurn)
         if Game.isHealer(character: characterTurn) {
             print("Which character do you want \(characterTurn.name) to heal ?")
@@ -126,7 +126,7 @@ struct Game{
             let teamTurn = i%2 == 1 ? game.team1 : game.team2
             game.battleTurn(teamTurn: teamTurn)
             i += 1
-            finish = (teamTurn.teamNumber == game.team1.teamNumber ? game.team2 : game.team1).isDead()
+            finish = (teamTurn.teamNumber == game.team1.teamNumber ? game.team2 : game.team1).isDead(winner : teamTurn.player)
         }
     }
 }

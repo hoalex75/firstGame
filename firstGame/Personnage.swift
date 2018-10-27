@@ -58,7 +58,7 @@ class Personnage{
     
     //Function which save the name entries by the player and return it.
     static func nameEntry(warriorType : String) -> String{
-        print("Which name do you want for your \(warriorType) ?")
+        print("\nWhich name do you want for your \(warriorType) ?")
         if let name = readLine(){
             if Personnage.existingName(nameWeWant: name){
                 print("Name already taken for one character, please pick a new one.")
