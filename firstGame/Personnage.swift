@@ -15,6 +15,7 @@ class Personnage{
     var lifePoints = 0
     var team = PlayerTeam.noTeam
     var isDead = false
+    var weapon = Weapon(name : "no weapon",value : 0)
     
     //Builder
     init(name : String){
@@ -79,21 +80,24 @@ class Personnage{
         if isDead {
             print("\(name) has just died !")
         }
+        
+        func equipNewWeapon( weapon : Weapon){
+            print("\(self.name) has just equipped the \(weapon.name)")
+            self.weapon = weapon
+        }
     }
     
     
 }
 //class Warrior inherited from Personnage, an abstract class from warriors' subclasses
 class Warrior : Personnage{
-    var attackValue = 0
-    
     //Methods
     //function for attacks
     override func action(target : Personnage) {
-        target.lifePoints = target.lifePoints - attackValue
+        target.lifePoints = target.lifePoints - weapon.value
         target.setIsDead()
         if !target.isDead {
-            print("\(self.name) attacks \(target.name) and deals \(attackValue) DMG.")
+            print("\(self.name) attacks \(target.name) and deals \(weapon.value) DMG.")
             print("\(target.name) has \(target.lifePoints) HP left.")
         }
     }
@@ -101,7 +105,6 @@ class Warrior : Personnage{
 
 //class Healer inherited from Personnage, an abstract class from healers' subclasses
 class Healer : Personnage{
-    var healValue = 0
     
     //Methods
     //Function which tests if the target is on the same team as the healer
@@ -115,7 +118,7 @@ class Healer : Personnage{
     
     //Function which is here to prevent healing over the maximum of life points
     private func isFullyRestore(target : Personnage) -> Bool{
-        if target.lifePoints + healValue >= target.maxLifePoints{
+        if target.lifePoints + weapon.value >= target.maxLifePoints{
             return true
         }else {
             return false
@@ -129,9 +132,9 @@ class Healer : Personnage{
                 target.lifePoints = target.maxLifePoints
             }
             else {
-                target.lifePoints = target.lifePoints + healValue
+                target.lifePoints = target.lifePoints + weapon.value
             }
-            print("\(self.name) heals \(target.name) for \(healValue) HP.")
+            print("\(self.name) heals \(target.name) for \(weapon.value) HP.")
             print("\(target.name) has \(target.lifePoints) HP left.")
         } else {
             print("You are healing an enemy")
@@ -145,7 +148,7 @@ class Mage : Healer {
     //Builder calling builder from Personnage
     override init(name: String) {
         super.init(name: name)
-        healValue = 5
+        weapon = Weapon(name: "Wound", value: 7)
         maxLifePoints = 80
         lifePoints = maxLifePoints
     }
@@ -155,7 +158,7 @@ class Combattant : Warrior {
     //Builder calling builder from Personnage
     override init(name: String) {
         super.init(name: name)
-        attackValue = 10
+        weapon = Weapon(name: "Sword", value: 10)
         maxLifePoints = 100
         lifePoints = maxLifePoints
     }
@@ -165,7 +168,7 @@ class Colosse : Warrior {
     //Builder calling builder from Personnage
     override init(name: String) {
         super.init(name: name)
-        attackValue = 6
+        weapon = Weapon(name: "Wooden stick", value: 6)
         maxLifePoints = 140
         lifePoints = maxLifePoints
     }
@@ -175,7 +178,7 @@ class Nain : Warrior {
     //Builder calling builder from Personnage
     override init(name: String) {
         super.init(name: name)
-        attackValue = 14
+        weapon = Weapon(name: "Sharped Axe", value: 14)
         maxLifePoints = 60
         lifePoints = maxLifePoints
     }

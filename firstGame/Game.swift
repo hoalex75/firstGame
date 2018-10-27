@@ -121,7 +121,6 @@ struct Game{
         
         game.team1.displayTeamMembers()
         game.team2.displayTeamMembers()
-        
         while !finish {
             let teamTurn = i%2 == 1 ? game.team1 : game.team2
             game.battleTurn(teamTurn: teamTurn)
