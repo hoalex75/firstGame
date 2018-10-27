@@ -24,12 +24,17 @@ class Chest{
         self.chestType = chestType
         chestType == .attackChest ? self.fillAttackChest() : self.fillHealChest()
     }
+    
     private static func randomPercent() -> Double {
         return Double(arc4random() % 1000) / 10.0;
     }
     
     func isAppeared() -> Bool{
-        return Chest.randomPercent() <= 30 ? true : false
+        let isAppeared = Chest.randomPercent() <= 30 ? true : false
+        if isAppeared{
+            print("\n >> A chest appeared in front of you !<<")
+        }
+        return isAppeared
     }
     
     func addWeapon(weaponName : String, weaponValue : Int){

@@ -80,13 +80,12 @@ class Personnage{
         if isDead {
             print("\(name) has just died !")
         }
-        
-        func equipNewWeapon( weapon : Weapon){
-            print("\(self.name) has just equipped the \(weapon.name)")
-            self.weapon = weapon
-        }
     }
     
+    func equipNewWeapon( weapon : Weapon){
+        print(">>\(self.name) has just equipped the \(weapon.name) \(weapon.value)", terminator : " ")
+        self.weapon = weapon
+    }
     
 }
 //class Warrior inherited from Personnage, an abstract class from warriors' subclasses

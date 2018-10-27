@@ -10,7 +10,5 @@ import Foundation
 
 
 
-// Game.play()
+Game.play()
 
-let chest = Chest(chestType: .healChest)
-chest.displayContent()

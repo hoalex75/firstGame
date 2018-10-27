@@ -66,14 +66,22 @@ struct Game{
     }
     
     //Function which leads a battle turn
-    private func battleTurn(teamTurn : Team){
+    private func battleTurn(teamTurn : Team, attackChest : Chest, healChest : Chest){
         let target : Personnage
         print("\nWhich character do you want to act ?")
         let characterTurn = characterSuitable(team: teamTurn)
         if Game.isHealer(character: characterTurn) {
+            if healChest.isAppeared() {
+                characterTurn.equipNewWeapon(weapon: healChest.weaponSelected())
+                print("Healing <<\n")
+            }
             print("Which character do you want \(characterTurn.name) to heal ?")
             target = characterSuitable(team: teamTurn)
         } else {
+            if attackChest.isAppeared(){
+                characterTurn.equipNewWeapon(weapon: attackChest.weaponSelected())
+                print("DMG <<\n")
+            }
             print("Which character do you want \(characterTurn.name) to attack ?")
             target = characterSuitable(team: teamTurn.teamNumber == team1.teamNumber ? team2 : team1)
         }
@@ -118,14 +126,19 @@ struct Game{
         let game = Game()
         var i = 1
         var finish = false
+        let healChest = Chest(chestType: .healChest)
+        let attackChest = Chest(chestType: .attackChest)
+        
         
         game.team1.displayTeamMembers()
         game.team2.displayTeamMembers()
         while !finish {
             let teamTurn = i%2 == 1 ? game.team1 : game.team2
-            game.battleTurn(teamTurn: teamTurn)
+            game.battleTurn(teamTurn: teamTurn, attackChest: attackChest, healChest: healChest)
             i += 1
             finish = (teamTurn.teamNumber == game.team1.teamNumber ? game.team2 : game.team1).isDead(winner : teamTurn.player)
         }
     }
+    
+    
 }
