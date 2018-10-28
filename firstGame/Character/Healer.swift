@@ -22,8 +22,8 @@ class Healer : Character{
     }
     
     //Function which is here to prevent healing over the maximum of life points
-    private func isFullyRestore(target : Character) -> Bool{
-        if target.lifePoints + weapon.value >= target.maxLifePoints{
+    private func isFullyRestore(target : Character, crit : Bool) -> Bool{
+        if target.lifePoints + weapon.value * (crit ? 2 : 1) >= target.maxLifePoints{
             return true
         }else {
             return false
@@ -32,14 +32,15 @@ class Healer : Character{
     
     //Function of healing
     override func action(target : Character){
+        let crit = self.isACrit()
         if isOnTheSameTeam(target: target){
-            if isFullyRestore(target: target){
+            if isFullyRestore(target: target, crit: crit){
                 target.lifePoints = target.maxLifePoints
             }
             else {
-                target.lifePoints = target.lifePoints + weapon.value
+                target.lifePoints = target.lifePoints + weapon.value * (crit ? 2 : 1)
             }
-            print("\(self.name) heals \(target.name) for \(weapon.value) HP.")
+            print("\(self.name) heals \(target.name) for \(weapon.value * (crit ? 2 : 1)) HP.")
             print("\(target.name) has \(target.lifePoints) HP left.")
         } else {
             print("You are healing an enemy")

@@ -35,25 +35,25 @@ class Chest{
     }
     
     // function which add a new weapon to the Array of weapon, weapons
-    func addWeapon(weaponName : String, weaponValue : Int){
-        let weapon = Weapon(name: weaponName, value : weaponValue)
+    func addWeapon(weaponName : String, weaponValue : Int, critic : Int){
+        let weapon = Weapon(name: weaponName, value : weaponValue, criticPower : critic)
         weapons.append(weapon)
     }
     
     // generate a given chest for warriors characters
     private func fillAttackChest(){
-        self.addWeapon(weaponName: "Fire Axe", weaponValue: 40)
-        self.addWeapon(weaponName: "Prismatic Bow", weaponValue: 20)
-        self.addWeapon(weaponName: "Gold Daggers", weaponValue: 34)
-        self.addWeapon(weaponName: "Cobalt Spear", weaponValue: 27)
+        self.addWeapon(weaponName: "Fire Axe", weaponValue: 40, critic: 15)
+        self.addWeapon(weaponName: "Prismatic Bow", weaponValue: 20, critic: 10)
+        self.addWeapon(weaponName: "Gold Daggers", weaponValue: 22,critic: 80)
+        self.addWeapon(weaponName: "Cobalt Spear", weaponValue: 27, critic: 25)
     }
     
     // generate a given chest fo healers characters
     private func fillHealChest(){
-        self.addWeapon(weaponName: "Lunatic Prism", weaponValue: 10)
-        self.addWeapon(weaponName: "Huge Wound", weaponValue: 15)
-        self.addWeapon(weaponName: "Legendary Orb of Healing", weaponValue: 25)
-        self.addWeapon(weaponName: "Blood Cup", weaponValue: 20)
+        self.addWeapon(weaponName: "Lunatic Prism", weaponValue: 10, critic: 30)
+        self.addWeapon(weaponName: "Huge Wound", weaponValue: 15, critic: 40)
+        self.addWeapon(weaponName: "Legendary Orb of Healing", weaponValue: 25, critic: 25)
+        self.addWeapon(weaponName: "Blood Cup", weaponValue: 20, critic: 80)
     }
     
     // display the content of a chest

@@ -15,7 +15,7 @@ class Character{
     var lifePoints = 0
     var team = PlayerTeam.noTeam
     var isDead = false
-    var weapon = Weapon(name : "no weapon",value : 0)
+    var weapon = Weapon(name : "no weapon",value : 0, criticPower : 0)
     
     //Builder
     init(name : String){
@@ -57,16 +57,18 @@ class Character{
         return character
     }
     
-    //Function which save the name entries by the player and return it.
+    //Function which saves the name entered by the player and return it.
     static func nameEntry(warriorType : String) -> String{
         print("\nWhich name do you want for your \(warriorType) ?")
         if let name = readLine(){
-            if Character.existingName(nameWeWant: name){
+            var nameReturned = name.lowercased()
+            nameReturned = nameReturned.capitalized
+            if Character.existingName(nameWeWant: nameReturned){
                 print("Name already taken for one character, please pick a new one.")
                 let newName = Character.nameEntry(warriorType: warriorType)
                 return newName
             } else {
-                return name
+                return nameReturned
             }
         }
         print("You don't choose a name or a problem occured, pls try again")
@@ -87,6 +89,13 @@ class Character{
         self.weapon = weapon
     }
     
+    func isACrit() -> Bool{
+        let crit = self.weapon.criticPower >= Int(arc4random()%100) + 1 ? true : false
+        if crit {
+            print("\n >>> Critical Hit !!! <<<")
+        }
+        return crit
+    }
 }
 
 

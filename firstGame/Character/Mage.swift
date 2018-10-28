@@ -13,7 +13,7 @@ class Mage : Healer {
     //Builder calling builder from Character
     override init(name: String) {
         super.init(name: name)
-        weapon = Weapon(name: "Wound", value: 7)
+        weapon = Weapon(name: "Wound", value: 7, criticPower: 25)
         maxLifePoints = 80
         lifePoints = maxLifePoints
     }

@@ -10,7 +10,6 @@ import Foundation
 
 struct Player{
     var team : PlayerTeam
-    var score = 0
     let name : String
     
     

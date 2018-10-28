@@ -13,14 +13,15 @@ class Warrior : Character{
     //Methods
     //function for attacks
     override func action(target : Character) {
-        var lifePointsRemaining = target.lifePoints - weapon.value
+        let crit = self.isACrit()
+        var lifePointsRemaining = target.lifePoints - weapon.value * (crit ? 2 : 1)
         if lifePointsRemaining < 0 {
             lifePointsRemaining = 0
         }
         target.lifePoints = lifePointsRemaining
         target.setIsDead()
         if !target.isDead {
-            print("\(self.name) attacks \(target.name) and deals \(weapon.value) DMG.")
+            print("\(self.name) attacks \(target.name) and deals \(weapon.value * (crit ? 2 : 1)) DMG.")
             print("\(target.name) has \(target.lifePoints) HP left.")
         }
     }

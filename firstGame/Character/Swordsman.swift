@@ -12,7 +12,7 @@ class Swordsman : Warrior {
     //Builder calling builder from Character
     override init(name: String) {
         super.init(name: name)
-        weapon = Weapon(name: "Sword", value: 10)
+        weapon = Weapon(name: "Sword", value: 10, criticPower: 10)
         maxLifePoints = 100
         lifePoints = maxLifePoints
     }

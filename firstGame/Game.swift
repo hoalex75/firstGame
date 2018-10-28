@@ -140,7 +140,28 @@ struct Game{
             i += 1
             finish = (teamTurn.teamNumber == game.team1.teamNumber ? game.team2 : game.team1).isDead(winner : teamTurn.player)
         }
+        if Game.replayEntry(){
+            print("Let's roll for another one")
+            Game.play()
+        }
     }
     
+    private static func replayEntry() -> Bool{
+        print("Do you want to replay ? 1- Yes  2- No")
+        if let entry = readLine() {
+            switch entry{
+            case "1":
+                return true
+            case "2":
+                return false
+            default:
+                print("Your must choose option one or two, please try again")
+                let err = replayEntry()
+                return err
+            }
+        }
+        let err = replayEntry()
+        return err
+    }
     
 }

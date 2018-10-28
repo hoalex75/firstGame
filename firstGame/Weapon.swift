@@ -10,11 +10,12 @@ import Foundation
 
 struct Weapon{
     var name : String
-    var value : Int
+    var value,criticPower : Int
     
-    init( name : String, value : Int){
+    init( name : String, value : Int, criticPower : Int){
         self.name = name
         self.value = value
+        self.criticPower = criticPower
     }
 }
 

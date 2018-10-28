@@ -12,7 +12,7 @@ class Dwarf : Warrior {
     //Builder calling builder from Character
     override init(name: String) {
         super.init(name: name)
-        weapon = Weapon(name: "Sharped Axe", value: 14)
+        weapon = Weapon(name: "Sharped Axe", value: 14, criticPower : 10)
         maxLifePoints = 60
         lifePoints = maxLifePoints
     }

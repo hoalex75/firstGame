@@ -12,7 +12,7 @@ class Colossus : Warrior {
     //Builder calling builder from Character
     override init(name: String) {
         super.init(name: name)
-        weapon = Weapon(name: "Wooden stick", value: 6)
+        weapon = Weapon(name: "Wooden stick", value: 6 , criticPower: 5)
         maxLifePoints = 140
         lifePoints = maxLifePoints
     }
