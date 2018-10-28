@@ -8,12 +8,8 @@
 
 import Foundation
 
-enum ChestType{
-    case healChest
-    case attackChest
-}
-
 class Chest{
+    // percent of chest's apparition
     static var percentChest = 30
     var weapons : [Weapon]
     var chestType : ChestType
@@ -29,6 +25,7 @@ class Chest{
         return Double(arc4random() % 1000) / 10.0;
     }
     
+    // return a bool which contains true if the chest appearead
     func isAppeared() -> Bool{
         let isAppeared = Chest.randomPercent() <= 30 ? true : false
         if isAppeared{
@@ -37,12 +34,13 @@ class Chest{
         return isAppeared
     }
     
+    // function which add a new weapon to the Array of weapon, weapons
     func addWeapon(weaponName : String, weaponValue : Int){
         let weapon = Weapon(name: weaponName, value : weaponValue)
         weapons.append(weapon)
     }
     
-    
+    // generate a given chest for warriors characters
     private func fillAttackChest(){
         self.addWeapon(weaponName: "Fire Axe", weaponValue: 40)
         self.addWeapon(weaponName: "Prismatic Bow", weaponValue: 20)
@@ -50,6 +48,7 @@ class Chest{
         self.addWeapon(weaponName: "Cobalt Spear", weaponValue: 27)
     }
     
+    // generate a given chest fo healers characters
     private func fillHealChest(){
         self.addWeapon(weaponName: "Lunatic Prism", weaponValue: 10)
         self.addWeapon(weaponName: "Huge Wound", weaponValue: 15)
@@ -57,6 +56,7 @@ class Chest{
         self.addWeapon(weaponName: "Blood Cup", weaponValue: 20)
     }
     
+    // display the content of a chest
     func displayContent(){
         print("This is the content of your chest !")
         for weapon in weapons{
@@ -64,6 +64,7 @@ class Chest{
         }
     }
     
+    // return a random weapon in the array weapons
     func weaponSelected() -> Weapon{
         let numberOfWeapon = Int(arc4random() % 4 )
         return weapons[numberOfWeapon]

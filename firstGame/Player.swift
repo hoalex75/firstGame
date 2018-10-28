@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Player{
+struct Player{
     var team : PlayerTeam
     var score = 0
     let name : String
@@ -19,6 +19,7 @@ class Player{
         self.name = name
     }
     
+    // function which asks his name to the player, recalls itself if no entry
     static func readName() -> String{
         print("Hey champion! What's your name ?")
         if let name = readLine() {

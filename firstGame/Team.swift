@@ -8,18 +8,12 @@
 
 import Foundation
 
-enum PlayerTeam{
-    case teamOne
-    case teamTwo
-    case noTeam
-}
-
 struct Team{
     let teamNumber : PlayerTeam
     let player : Player
-    var characters = [Personnage]()
+    var characters = [Character]()
     
-    init(player : Player, characters : [Personnage]){
+    init(player : Player, characters : [Character]){
         self.player = player
         teamNumber = player.team
         self.characters = characters
@@ -36,6 +30,7 @@ struct Team{
         print("")
     }
     
+    //Function which tests if a team has its entire members dead
     func isDead(winner : Player) -> Bool {
         let isFinished = characters[0].isDead && characters[1].isDead && characters[2].isDead
         if isFinished {
