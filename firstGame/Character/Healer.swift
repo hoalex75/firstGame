@@ -12,14 +12,6 @@ import Foundation
 class Healer : Character{
     
     //Methods
-    //Function which tests if the target is on the same team as the healer
-    private func isOnTheSameTeam(target : Character) -> Bool{
-        if target.team != self.team {
-            return false
-        }else {
-            return true
-        }
-    }
     
     //Function which is here to prevent healing over the maximum of life points
     private func isFullyRestore(target : Character, crit : Bool) -> Bool{
@@ -33,17 +25,16 @@ class Healer : Character{
     //Function of healing
     override func action(target : Character){
         let crit = self.isACrit()
-        if isOnTheSameTeam(target: target){
-            if isFullyRestore(target: target, crit: crit){
-                target.lifePoints = target.maxLifePoints
-            }
-            else {
-                target.lifePoints = target.lifePoints + weapon.value * (crit ? 2 : 1)
-            }
-            print("\(self.name) heals \(target.name) for \(weapon.value * (crit ? 2 : 1)) HP.")
-            print("\(target.name) has \(target.lifePoints) HP left.")
-        } else {
-            print("You are healing an enemy")
+        if isFullyRestore(target: target, crit: crit){
+            print("\(self.name) heals \(target.name) for \(target.maxLifePoints - target.lifePoints) HP.")
+            target.lifePoints = target.maxLifePoints
+            
         }
+        else {
+            target.lifePoints = target.lifePoints + weapon.value * (crit ? 2 : 1)
+            print("\(self.name) heals \(target.name) for \(weapon.value * (crit ? 2 : 1)) HP.")
+        }
+        
+        print("\(target.name) has \(target.lifePoints) HP left.")
     }
 }
