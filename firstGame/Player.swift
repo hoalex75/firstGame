@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 struct Player{
     var team : PlayerTeam
     let name : String

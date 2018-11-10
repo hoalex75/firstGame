@@ -20,10 +20,10 @@ struct Game{
     private static func introDisplay(teamNumber : Int, name : String){
         print("\(name) you must choose three characters to complete your team.")
         print("You can have several times the same type of warrior, here are the choices :")
-        print("Swordsman : L'attaquant classique. Un bon guerrier !")
-        print("Mage : Son talent ? Soigner les membres de son équipe.")
-        print("Colossus : Imposant et très résistant, mais il ne vous fera pas bien mal")
-        print("Dwarf : Sa hache vous infligera beaucoup de dégâts, mais il n'a pas beaucoup de points de vie.")
+        print("Swordsman : The classic warrior, a reasonnable choice for who wants to hurt.")
+        print("Mage : The only guy who takes care of others in this group, an healer.")
+        print("Colossus : He won't hurt you very bad but he can take a lot.")
+        print("Dwarf : His axe is very efficient but his health points are quite low.")
     }
     
     //Function which creates characters and put them in a new team

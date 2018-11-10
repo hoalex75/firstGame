@@ -9,7 +9,6 @@
 import Foundation
 
 class Mage : Healer {
-    
     //Builder calling builder from Character
     override init(name: String) {
         super.init(name: name)

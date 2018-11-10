@@ -8,8 +8,11 @@
 
 import Foundation
 
+//structure for weapons
 struct Weapon{
+    // name of the weapon
     var name : String
+    // attack power and critic chances in percent
     var value,criticPower : Int
     
     init( name : String, value : Int, criticPower : Int){
